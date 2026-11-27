@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Speezy — Payment Routing Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ONE persistent environment. Everything below is layered on the same map. -->
+  <div id="world" aria-label="Interactive world payment network">
+    <svg id="map" role="img" aria-label="World map. Click or drag between countries to build a payment route."></svg>
+    <svg id="flow" aria-hidden="true"></svg>
+    <div id="hud">
+      <header id="bar">
+        <div class="brand">
+          <span class="wordmark">Speezy</span>
+          <span class="meta">ROUTING LAYER · PROTOTYPE</span>
+        </div>
+        <div class="pair-live" id="pairLive">
+          <span class="k">FX</span>
+          <span id="pairLiveSym">—</span>
+          <span id="pairLiveRate" class="num">SELECT TWO COUNTRIES</span>
+        </div>
+        <div class="status">
+          <span class="dot" id="liveDot"></span><span id="liveTxt">CONNECTING</span>
+          <span class="sep">│</span><span>FX</span>
+          <span class="sep">│</span><span>ROUTES <b id="routeCount">—</b></span>
+          <span class="sep hide-s">│</span><span class="hide-s">UPDATED <b id="updated">--:--:--</b></span>
+        </div>
+      </header>
+
+      <div id="hover" class="hover-tag"></div>
+      <div id="tagSrc" class="ctag src"></div>
+      <div id="tagDst" class="ctag dst"></div>
+
+      <section id="pairBlock" class="fade">
+        <div class="lbl">CURRENCY PAIR</div>
+        <div class="pair-grid">
+          <div><div class="cname" id="pbSrcName"></div><div class="ccode" id="pbSrcCode"></div></div>
+          <div class="arrow">→</div>
+          <div><div class="cname" id="pbDstName"></div><div class="ccode" id="pbDstCode"></div></div>
+        </div>
+        <div class="rate" id="pbRate"></div>
+        <div class="rate2" id="pbRate2"></div>
+        <div class="src-line" id="pbMeta"></div>
+      </section>
+
+      <div id="routeStatus" class="fade"></div>
+      <div id="checkout" class="fade"></div>
+
+      <div id="prompt" class="fade"></div>
+
+      <nav id="rail" aria-hidden="true"></nav>
+
+      <div id="zoom">
+        <button type="button" data-z="in" aria-label="Zoom in">+</button>
+        <button type="button" data-z="out" aria-label="Zoom out">−</button>
+        <button type="button" data-z="reset" aria-label="Reset view">⟲</button>
+        <span class="zhint">CTRL/⌘ + SCROLL · PINCH TO ZOOM · DRAG OCEAN TO PAN</span>
+      </div>
+
+      <footer id="ticker"><div class="track" id="tickerTrack"></div></footer>
+    </div>
+  </div>
+
+  <!-- Scroll track: scrolling changes the state of the same environment. Holds no content. -->
+  <div id="scrollTrack" aria-hidden="true"></div>
+
+  <script src="lib/d3.min.js"></script>
+  <script src="lib/topojson-client.min.js"></script>
+  <script src="data/world-50m.js"></script>
+  <script src="data/countries.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
