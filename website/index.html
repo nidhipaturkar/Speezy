@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speezy | Global payments, smarter routes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">speezy<span>.</span></div>
+
+        <div class="nav-links">
+            <a href="#how">How it works</a>
+            <a href="#routing">Routing</a>
+            <a href="#vision">Vision</a>
+        </div>
+
+        <button class="nav-button" onclick="scrollToDemo()">
+            Try Speezy
+        </button>
+    </nav>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                Intelligent payment routing
+            </div>
+
+            <h1>
+                Money should take
+                <span>the smartest route.</span>
+            </h1>
+
+            <p class="hero-text">
+                Pay foreign merchants with the simplicity of UPI.
+                Speezy handles the routing complexity underneath.
+            </p>
+
+            <button class="primary-button" onclick="scrollToDemo()">
+                Find my route →
+            </button>
+
+            <div class="hero-flow">
+                <div>Foreign checkout</div>
+                <span>→</span>
+                <div>Speezy</div>
+                <span>→</span>
+                <div>UPI</div>
+                <span>→</span>
+                <div>Merchant paid</div>
+            </div>
+
+        </section>
+
+
+        <section class="demo-section" id="demo">
+
+            <div class="section-label">01 / TRY THE ROUTER</div>
+
+            <h2>
+                Tell Speezy what you're trying to pay.
+            </h2>
+
+            <p class="section-description">
+                The user shouldn't need to understand the route.
+                That's our job.
+            </p>
+
+
+            <div class="router-card">
+
+                <div class="input-group">
+
+                    <label>Foreign merchant</label>
+
+                    <input
+                        id="merchant"
+                        type="text"
+                        placeholder="e.g. Netflix, Amazon US, Shopify"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Amount</label>
+
+                    <div class="amount-input">
+                        <span>USD</span>
+
+                        <input
+                            id="amount"
+                            type="number"
+                            placeholder="100"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>What's the problem?</label>
+
+                    <select id="problem">
+                        <option value="card">My card isn't accepted</option>
+                        <option value="international">I don't have an international card</option>
+                        <option value="wallet">The merchant only accepts a foreign wallet</option>
+                        <option value="subscription">I need to pay a subscription</option>
+                        <option value="other">I need another way to pay</option>
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="route-button"
+                    onclick="findRoute()"
+                >
+                    Find my route
+                </button>
+
+            </div>
+
+
+            <div id="routing-status" class="routing-status hidden">
+
+                <div class="status-icon">
+                    <div class="spinner"></div>
+                </div>
+
+                <div>
+                    <strong>Speezy is building your route...</strong>
+                    <p id="status-text">
+                        Understanding merchant requirements
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div id="result" class="result hidden">
+
+                <div class="result-header">
+                    <div>
+                        <div class="section-label">BEST AVAILABLE ROUTE</div>
+                        <h3 id="result-title">
+                            Your route is ready.
+                        </h3>
+                    </div>
+
+                    <div class="success-badge">
+                        Route found
+                    </div>
+                </div>
+
+
+                <div class="route-visual">
+
+                    <div class="route-node">
+                        <div class="node-icon">₹</div>
+                        <span>Your UPI</span>
+                    </div>
+
+                    <div class="route-line">
+                        <div class="line-progress"></div>
+                    </div>
+
+                    <div class="route-node">
+                        <div class="node-icon">S</div>
+                        <span>Speezy</span>
+                    </div>
+
+                    <div class="route-line">
+                        <div class="line-progress"></div>
+                    </div>
+
+                    <div class="route-node">
+                        <div class="node-icon">M</div>
+                        <span id="merchant-node">Merchant</span>
+                    </div>
+
+                </div>
+
+
+                <div class="route-details">
+
+                    <div>
+                        <span>Route</span>
+                        <strong id="route-name">
+                            UPI → Speezy → Merchant
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Estimated time</span>
+                        <strong id="route-time">
+                            ~30 seconds
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Payment experience</span>
+                        <strong>UPI</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="payment-card">
+
+                    <div class="payment-top">
+
+                        <div>
+                            <div class="payment-label">
+                                READY TO PAY
+                            </div>
+
+                            <h3 id="payment-amount">
+                                ₹8,700
+                            </h3>
+                        </div>
+
+                        <div class="upi-mark">
+                            UPI
+                        </div>
+
+                    </div>
+
+
+                    <div class="fake-qr">
+
+                        <div class="qr-grid">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        Scan with your UPI app to approve.
+                    </p>
+
+                    <div class="upi-apps">
+                        Google Pay · PhonePe · Paytm
+                    </div>
+
+                </div>
+
+
+                <div class="fallbacks">
+
+                    <div class="section-label">
+                        ROUTE OPTIONS
+                    </div>
+
+                    <div class="fallback">
+                        <span>Alternative route</span>
+                        <strong>Available</strong>
+                    </div>
+
+                    <div class="fallback">
+                        <span>Fallback route</span>
+                        <strong>Available</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="how-section" id="how">
+
+            <div class="section-label">02 / HOW SPEEZY WORKS</div>
+
+            <h2>
+                The user sees simplicity.
+                <br>
+                Speezy sees the complexity.
+            </h2>
+
+
+            <div class="steps">
+
+                <div class="step">
+                    <div class="step-number">01</div>
+
+                    <h3>Translate</h3>
+
+                    <p>
+                        Turn the user's payment action into a structured
+                        payment intent.
+                    </p>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">02</div>
+
+                    <h3>Route</h3>
+
+                    <p>
+                        Create viable paths between the user's payment
+                        and the foreign merchant.
+                    </p>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">03</div>
+
+                    <h3>Pay</h3>
+
+                    <p>
+                        Let the user approve the payment through a
+                        familiar UPI experience.
+                    </p>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-number">04</div>
+
+                    <h3>Learn</h3>
+
+                    <p>
+                        Use payment outcomes to improve future routing
+                        decisions.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="routing-section" id="routing">
+
+            <div class="section-label">03 / THE ROUTING ENGINE</div>
+
+            <div class="routing-content">
+
+                <div>
+
+                    <h2>
+                        We don't just find routes.
+                        <span>We build them.</span>
+                    </h2>
+
+                </div>
+
+                <div>
+
+                    <p>
+                        A payment doesn't always have a direct path.
+                        Speezy explores how different payment capabilities,
+                        partners and rails can be combined to create a
+                        viable route.
+                    </p>
+
+                    <p>
+                        The user doesn't need to know which path was used.
+                        Speezy handles that complexity behind the scenes.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="vision-section" id="vision">
+
+            <div class="section-label">04 / THE VISION</div>
+
+            <h2>
+                Paying across borders
+                should feel like paying next door.
+            </h2>
+
+            <p>
+                The infrastructure can be complicated.
+                The experience shouldn't be.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="logo">
+            speezy<span>.</span>
+        </div>
+
+        <p>
+            Making global money move smarter, faster, and without borders.
+        </p>
+
+        <span class="demo-note">
+            Experimental product prototype
+        </span>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
